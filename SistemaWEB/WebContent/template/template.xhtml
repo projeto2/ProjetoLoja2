@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+		<title>Sistema WEB</title>
+		<h:outputStylesheet name="estilo.css" library="css" />
+		<h:outputScript name="locale.js" library="js"/>
+	</h:head>
+	
+	<h:body>
+		<h:form id="form1">
+		<h:panelGroup layout="block" style="position:relative;width:1024px;	height:1400px;z-index:1;margin: auto;padding: 0px;top: 0px;border: 1px solid #F60;"> 
+			<h:panelGrid style="background-color:#f7b64b; height:30px" width="1024" columns="1">
+				<h:panelGroup layout="block" style="text-align:right;font-weight:bold" rendered="#{usuarioManager.usuario.id == null}">
+					<h:outputText value="Seja Bem Vindo, " style="color:#FFFFFF"/>
+					<p:commandLink value="clique aqui" action="/login" ajax="false" immediate="true"/>
+					<h:outputText value=" para fazer login." style="color:#FFFFFF"/>
+				</h:panelGroup>
+				
+				<h:panelGroup layout="block" style="text-align:right;font-weight:bold" rendered="#{usuarioManager.usuario.id != null}">
+					<h:outputText value="Seja Bem Vindo #{usuarioManager.usuario.nome} " style="color:#FFFFFF"/>
+					<p:commandLink value="[Sair]" action="#{usuarioManager.sair}" ajax="false" immediate="true"/>
+				</h:panelGroup>
+			</h:panelGrid>		
+			<h:panelGrid columns="2" columnClasses="coluna1,coluna2">
+				
+				<h:graphicImage library="imagem" name="logo.png" height="167"/>
+				<h:panelGroup style="height:167">
+					<h:panelGrid columns="7" columnClasses="coluna2,coluna3,coluna4,coluna5,coluna6,coluna7">
+						<h:panelGroup> 
+							<p:inputText style="width:300px;margin-top:20px;height:18px" value="#{produtoManager.buscar}"/>
+						</h:panelGroup>
+						
+						<h:panelGroup>
+							<p:commandButton value="Buscar" style="margin-top:20px" ajax="false" action="#{produtoManager.pesquisa}"/>
+						</h:panelGroup>
+						
+						<h:panelGroup>
+							<p:commandLink action="/usuario" ajax="false" rendered="#{usuarioManager.usuario.id == null}" immediate="true">
+								<h:graphicImage library="imagem" name="cadastrar.jpg" style="margin-top:25px;border:0px" /> 
+							</p:commandLink>
+							
+							<p:commandLink action="#{usuarioManager.obter}" ajax="false" rendered="#{usuarioManager.usuario.id != null}" immediate="true">
+								<h:graphicImage library="imagem" name="cadastrar.jpg" style="margin-top:25px;border:0px" /> 
+							</p:commandLink>
+						</h:panelGroup>
+						
+						<h:panelGroup >
+							<p:commandLink action="/pedidos" ajax="false" immediate="true" rendered="#{usuarioManager.usuario.id != null}">
+								<h:graphicImage library="imagem" name="pedidos.jpg" style="margin-top:25px;border:0px"/>
+							</p:commandLink> 
+						</h:panelGroup>
+						
+						<h:panelGroup>
+							<h:graphicImage library="imagem" name="carrinho.png" style="margin-top:15px;border:0px"/>
+						</h:panelGroup>
+						
+						<h:panelGroup>
+							<p:commandLink action="/carrinho" ajax="false" immediate="true">
+								<h:graphicImage library="imagem" name="meucarrinho.jpg" style="margin-top:15px;border:0px"/> <br/>
+								<h:outputText value="[#{pedidoManager.quantidadeProduto}] Produtos" style="color:#F90"/>
+							</p:commandLink> 
+							<br/>
+							<p:commandLink action="#{pedidoManager.obterListaDesejo}" ajax="false" immediate="true" rendered="#{usuarioManager.usuario.id != null}">
+								<h:graphicImage library="imagem" name="lista.jpg" style="margin-top:15px;border:0px"/> <br/>
+								<h:outputText value="[#{pedidoManager.quantidadeListaDesejo}] Produtos" style="color:#F90"/>
+							</p:commandLink> 
+						</h:panelGroup>
+					</h:panelGrid>
+					<h:panelGrid columns="11"  style="margin-top:70px">
+						<p:commandLink action="/principal" ajax="false" immediate="true">
+							<h:graphicImage library="imagem" name="inicio.jpg" style="margin-top:15px;border:0px"/>
+						</p:commandLink>
+						<h:graphicImage library="imagem" name="separador.jpg" style="margin-top:15px"/>
+						
+						<p:commandLink action="/produto" ajax="false" immediate="true">
+							<h:graphicImage library="imagem" name="games.jpg" style="margin-top:15px;border:0px"/>
+							<f:setPropertyActionListener target="#{produtoManager.categoria}" value="GAME" />
+						</p:commandLink>
+						
+						<h:graphicImage library="imagem" name="separador.jpg" style="margin-top:15px"/>
+						
+						<p:commandLink action="/produto" ajax="false" immediate="true">
+							<h:graphicImage library="imagem" name="software.jpg" style="margin-top:15px;border:0px"/>
+							<f:setPropertyActionListener target="#{produtoManager.categoria}" value="SOFTWARE" />
+						</p:commandLink>
+						
+						<h:graphicImage library="imagem" name="separador.jpg" style="margin-top:15px"/>
+						
+						<p:commandLink action="/produto" ajax="false" immediate="true">
+							<h:graphicImage library="imagem" name="informatica.jpg" style="margin-top:15px;border:0px"/>
+							<f:setPropertyActionListener target="#{produtoManager.categoria}" value="INFORMATICA" />
+						</p:commandLink>
+						
+						<h:graphicImage library="imagem" name="separador.jpg" style="margin-top:15px"/>
+						
+						<p:commandLink action="/produto" ajax="false" immediate="true">
+							<h:graphicImage library="imagem" name="acessorios.jpg" style="margin-top:15px;border:0px"/>
+							<f:setPropertyActionListener target="#{produtoManager.categoria}" value="ACESSORIOS" />
+						</p:commandLink>
+						
+						<h:graphicImage library="imagem" name="separador.jpg" style="margin-top:15px"/> 
+						
+						<p:commandLink action="/contato" ajax="false" immediate="true">
+							<h:graphicImage library="imagem" name="contato.jpg" style="margin-top:15px;border:0px"/>
+						</p:commandLink>
+					</h:panelGrid>
+				</h:panelGroup>
+			
+			</h:panelGrid>
+			
+			<p:separator/>
+			
+				<ui:insert name="conteudo"></ui:insert>
+			</h:panelGroup>
+		</h:form>
+		<ui:insert name="popup"></ui:insert>
+		<p:dialog header="Adicionar Endereço" modal="true" position="top" visible="false" widgetVar="addEnd">
+			<h:form>
+				<h:outputText value="Nome: "/>
+				<p:inputText id="nome" style="width:400px" value="#{usuarioManager.endereco.nome}"/>
+				<p:separator/>
+				<h:panelGrid columns="4" columnClasses="padrao1" width="610">
+							<h:outputText value="Logradouro:"/>
+							<p:inputText style="width:300px" id="logradouro" value="#{usuarioManager.endereco.logradouro}" required="true"/>
+							<h:outputText value="Número:"/>
+							<p:inputText style="width:50px" id="numero" value="#{usuarioManager.endereco.numero}" required="true"/>
+						</h:panelGrid>
+						<h:panelGrid columns="6" columnClasses="padrao1"  width="610">
+							<h:outputText value="Bairro:"/>
+							<p:inputText id="bairro" value="#{usuarioManager.endereco.bairro}" required="true"/>
+							<h:outputText value="Cidade:"/>
+							<p:inputText id="cidade" value="#{usuarioManager.endereco.cidade}" required="true"/>
+							<h:outputText value="UF:"/>
+							<p:selectOneMenu style="width:50px" id="uf" value="#{usuarioManager.endereco.uf}" required="true">
+								<f:selectItem itemLabel="..." itemValue=""/>
+								<f:selectItem itemLabel="AC" itemValue="AC"/>
+    							<f:selectItem itemLabel="AL" itemValue="AL"/>
+						        <f:selectItem itemLabel="AM" itemValue="AM"/>
+						        <f:selectItem itemLabel="AP" itemValue="AP"/>
+						        <f:selectItem itemLabel="BA" itemValue="BA"/>
+						        <f:selectItem itemLabel="CE" itemValue="CE"/>
+						        <f:selectItem itemLabel="DF" itemValue="DF"/>
+						        <f:selectItem itemLabel="ES" itemValue="ES"/>
+						        <f:selectItem itemLabel="GO" itemValue="GO"/>
+						        <f:selectItem itemLabel="MA" itemValue="MA"/>
+						        <f:selectItem itemLabel="MG" itemValue="MG"/>
+						        <f:selectItem itemLabel="MS" itemValue="MS"/>
+						        <f:selectItem itemLabel="MT" itemValue="MT"/>
+						        <f:selectItem itemLabel="PA" itemValue="PA"/>
+						        <f:selectItem itemLabel="PB" itemValue="PB"/>
+						        <f:selectItem itemLabel="PE" itemValue="PE"/>
+						        <f:selectItem itemLabel="PI" itemValue="PI"/>
+						        <f:selectItem itemLabel="PR" itemValue="PR"/>
+						        <f:selectItem itemLabel="RJ" itemValue="RJ"/>
+						        <f:selectItem itemLabel="RN" itemValue="RN"/>
+						        <f:selectItem itemLabel="RO" itemValue="RO"/>
+						        <f:selectItem itemLabel="RR" itemValue="RR"/>
+						        <f:selectItem itemLabel="RS" itemValue="RS"/>
+						        <f:selectItem itemLabel="SC" itemValue="SC"/>
+						        <f:selectItem itemLabel="SE" itemValue="SE"/>
+						        <f:selectItem itemLabel="SP" itemValue="SP"/>
+						        <f:selectItem itemLabel="TO" itemValue="TO"/>
+							</p:selectOneMenu>
+							
+							<h:outputText value="CEP:"/>
+							<p:inputText id="cep" value="#{usuarioManager.endereco.cep}" required="true"/>
+						</h:panelGrid>
+						<p:separator/>
+						<h:panelGroup layout="block" style="text-align:center">
+							<p:commandButton value="Salvar" ajax="false" action="#{usuarioManager.salvarEndereco}"/>
+						</h:panelGroup>
+			</h:form>
+		
+		</p:dialog>
+		
+		<p:dialog modal="true" header="Produto excluído com sucesso!" widgetVar="excluirMsg" visible="false">
+			<h:form>
+				<h:panelGroup layout="block" style="text-align:center">
+					<p:commandButton value="OK" ajax="false" action="/listadesejo"/>
+				</h:panelGroup>
+			</h:form>
+		</p:dialog>
+	</h:body>
+
+</html>

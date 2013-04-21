@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Cadastro de Usuário">
+				<h:outputText value="* Informações necessárias" style="color:#FF0000" />
+				<h:panelGrid columns="2" columnClasses="padrao1" width="415">
+					<h:panelGroup>
+						<h:outputText value="*" style="color:#FF0000" />
+						<h:outputLabel value="Nome: "/>
+					</h:panelGroup>
+					<p:inputText style="width:300px" id="nome" value="#{usuarioManager.usuario.nome}" required="true"/>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="4" columnClasses="padrao1" width="415">
+					<h:panelGroup>
+						<h:outputText value="*" style="color:#FF0000" />
+						<h:outputLabel value="CPF: "/>
+					</h:panelGroup>
+					<p:inputText id="cpf" value="#{usuarioManager.usuario.cpf}" required="true"/>
+					<h:outputLabel value="RG: "/>
+					<p:inputText id="rg" value="#{usuarioManager.usuario.rg}"/>
+					<h:panelGroup>
+						<h:outputText value="*" style="color:#FF0000" />
+						<h:outputLabel value="Nascimento: " />
+					</h:panelGroup>
+					<p:calendar id="nascimento" value="#{usuarioManager.usuario.dataNascimento}" required="true" locale="pt" navigator="true"/>
+				</h:panelGrid>
+				<p:separator/>
+				<h:panelGrid columns="2" columnClasses="padrao1" >
+					<h:panelGroup>
+						<h:outputText value="*" style="color:#FF0000" />
+						<h:outputLabel value="E-mail: "/>
+					</h:panelGroup>
+					<p:inputText id="email" value="#{usuarioManager.usuario.email}" style="width:300px" required="true"/>
+					<h:panelGroup>
+						<h:outputText value="*" style="color:#FF0000" />
+						<h:outputLabel value="Senha: "/>
+					</h:panelGroup>
+					<p:password id="senha" value="#{usuarioManager.usuario.senha}" redisplay="true" required="true" promptLabel="Digite a senha" feedback="true" weakLabel="Ruim" goodLabel="Boa" strongLabel="Ótima"/>
+				</h:panelGrid>
+				<p:separator />
+				<p:tabView >
+					<p:tab title="Endereço" >
+						<h:panelGrid columns="4" columnClasses="padrao1" width="610">
+							<h:panelGroup>
+								<h:outputText value="*" style="color:#FF0000" />
+								<h:outputLabel value="Logradouro: "/>
+							</h:panelGroup>
+							<p:inputText style="width:300px" id="logradouro" value="#{usuarioManager.enderecos[0].logradouro}" required="true"/>
+							<h:panelGroup>
+								<h:outputText value="*" style="color:#FF0000" />
+								<h:outputLabel value="Número: "/>
+							</h:panelGroup>
+							<p:inputText style="width:50px" id="numero" value="#{usuarioManager.enderecos[0].numero}" required="true"/>
+						</h:panelGrid>
+						<h:panelGrid columns="6" columnClasses="padrao1"  width="610">
+							<h:panelGroup>
+								<h:outputText value="*" style="color:#FF0000" />
+								<h:outputLabel value="Bairro: "/>
+							</h:panelGroup>
+							<p:inputText id="bairro" value="#{usuarioManager.enderecos[0].bairro}" required="true"/>
+							<h:panelGroup>
+								<h:outputText value="*" style="color:#FF0000" />
+								<h:outputLabel value="Cidade: "/>
+							</h:panelGroup>
+							<p:inputText id="cidade" value="#{usuarioManager.enderecos[0].cidade}" required="true"/>
+							<h:panelGroup>
+								<h:outputText value="*" style="color:#FF0000" />
+								<h:outputLabel value="UF: "/>
+							</h:panelGroup>
+							<p:selectOneMenu style="width:50px" id="uf" value="#{usuarioManager.enderecos[0].uf}" required="true">
+								<f:selectItem itemLabel="..." itemValue=""/>
+								<f:selectItem itemLabel="AC" itemValue="AC"/>
+    							<f:selectItem itemLabel="AL" itemValue="AL"/>
+						        <f:selectItem itemLabel="AM" itemValue="AM"/>
+						        <f:selectItem itemLabel="AP" itemValue="AP"/>
+						        <f:selectItem itemLabel="BA" itemValue="BA"/>
+						        <f:selectItem itemLabel="CE" itemValue="CE"/>
+						        <f:selectItem itemLabel="DF" itemValue="DF"/>
+						        <f:selectItem itemLabel="ES" itemValue="ES"/>
+						        <f:selectItem itemLabel="GO" itemValue="GO"/>
+						        <f:selectItem itemLabel="MA" itemValue="MA"/>
+						        <f:selectItem itemLabel="MG" itemValue="MG"/>
+						        <f:selectItem itemLabel="MS" itemValue="MS"/>
+						        <f:selectItem itemLabel="MT" itemValue="MT"/>
+						        <f:selectItem itemLabel="PA" itemValue="PA"/>
+						        <f:selectItem itemLabel="PB" itemValue="PB"/>
+						        <f:selectItem itemLabel="PE" itemValue="PE"/>
+						        <f:selectItem itemLabel="PI" itemValue="PI"/>
+						        <f:selectItem itemLabel="PR" itemValue="PR"/>
+						        <f:selectItem itemLabel="RJ" itemValue="RJ"/>
+						        <f:selectItem itemLabel="RN" itemValue="RN"/>
+						        <f:selectItem itemLabel="RO" itemValue="RO"/>
+						        <f:selectItem itemLabel="RR" itemValue="RR"/>
+						        <f:selectItem itemLabel="RS" itemValue="RS"/>
+						        <f:selectItem itemLabel="SC" itemValue="SC"/>
+						        <f:selectItem itemLabel="SE" itemValue="SE"/>
+						        <f:selectItem itemLabel="SP" itemValue="SP"/>
+						        <f:selectItem itemLabel="TO" itemValue="TO"/>
+							</p:selectOneMenu>
+							
+							<h:panelGroup>
+								<h:outputText value="*" style="color:#FF0000" />
+								<h:outputLabel value="CEP: "/>
+							</h:panelGroup>
+							<p:inputText id="cep" value="#{usuarioManager.enderecos[0].cep}" required="true"/>
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Outro Endereço">
+						<h:panelGrid columns="2" columnClasses="padrao1">
+						<h:outputText value="Nome:" />
+							<p:inputText style="width:300px" id="nome2" value="#{usuarioManager.enderecos[1].nome}"/>
+						</h:panelGrid>
+						<h:panelGrid columns="4" columnClasses="padrao1" width="610">
+							<h:outputText value="Logradouro:"/>
+							<p:inputText style="width:300px" id="logradouro2" value="#{usuarioManager.enderecos[1].logradouro}"/>
+							<h:outputText value="Número:"/>
+							<p:inputText style="width:50px" id="numero2" value="#{usuarioManager.enderecos[1].numero}"/>
+						</h:panelGrid>
+						<h:panelGrid columns="6" columnClasses="padrao1"  width="610">
+							<h:outputText value="Bairro:"/>
+							<p:inputText id="bairro2" value="#{usuarioManager.enderecos[1].bairro}"/>
+							<h:outputText value="Cidade:"/>
+							<p:inputText id="cidade2" value="#{usuarioManager.enderecos[1].cidade}"/>
+							<h:outputText value="UF:"/>
+							<p:selectOneMenu style="width:50px" id="uf2" value="#{usuarioManager.enderecos[1].uf}">
+								<f:selectItem itemLabel="..." itemValue=""/>
+								<f:selectItem itemLabel="AC" itemValue="AC"/>
+    								<f:selectItem itemLabel="AL" itemValue="AL"/>
+						        <f:selectItem itemLabel="AM" itemValue="AM"/>
+						        <f:selectItem itemLabel="AP" itemValue="AP"/>
+						        <f:selectItem itemLabel="BA" itemValue="BA"/>
+						        <f:selectItem itemLabel="CE" itemValue="CE"/>
+						        <f:selectItem itemLabel="DF" itemValue="DF"/>
+						        <f:selectItem itemLabel="ES" itemValue="ES"/>
+						        <f:selectItem itemLabel="GO" itemValue="GO"/>
+						        <f:selectItem itemLabel="MA" itemValue="MA"/>
+						        <f:selectItem itemLabel="MG" itemValue="MG"/>
+						        <f:selectItem itemLabel="MS" itemValue="MS"/>
+						        <f:selectItem itemLabel="MT" itemValue="MT"/>
+						        <f:selectItem itemLabel="PA" itemValue="PA"/>
+						        <f:selectItem itemLabel="PB" itemValue="PB"/>
+						        <f:selectItem itemLabel="PE" itemValue="PE"/>
+						        <f:selectItem itemLabel="PI" itemValue="PI"/>
+						        <f:selectItem itemLabel="PR" itemValue="PR"/>
+						        <f:selectItem itemLabel="RJ" itemValue="RJ"/>
+						        <f:selectItem itemLabel="RN" itemValue="RN"/>
+						        <f:selectItem itemLabel="RO" itemValue="RO"/>
+						        <f:selectItem itemLabel="RR" itemValue="RR"/>
+						        <f:selectItem itemLabel="RS" itemValue="RS"/>
+						        <f:selectItem itemLabel="SC" itemValue="SC"/>
+						        <f:selectItem itemLabel="SE" itemValue="SE"/>
+						        <f:selectItem itemLabel="SP" itemValue="SP"/>
+						        <f:selectItem itemLabel="TO" itemValue="TO"/>
+							</p:selectOneMenu>
+							
+							<h:outputText value="CEP:"/>
+							<p:inputText id="cep2" value="#{usuarioManager.enderecos[1].cep}"/>
+						</h:panelGrid>
+					</p:tab>
+				</p:tabView>
+				
+				<h:panelGroup layout="block" style="text-align:center">
+					<p:commandButton value="Salvar" action="#{usuarioManager.salvar}" ajax="false"/>
+				</h:panelGroup>
+			</p:panel>
+		</ui:define>
+		</ui:composition>
+
+</html>

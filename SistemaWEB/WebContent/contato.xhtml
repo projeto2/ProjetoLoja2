@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">			
+			<h:panelGroup layout="block" style="margin:5px; font-size: 18px; font-weight:bold; color:#F90; text-align:center">
+				<h:outputText value="Fale Conosco"/>
+			</h:panelGroup>
+			
+			<p:separator/>
+			<h:outputText value="Prezado cliente, agradecemos a sua visita, caso queira entrar em contato conosco você pode:" style="color:#676767;margin:5px"/><br/>
+			<ul>
+				<li>
+					<h:outputText value="nos escrever um e-mail para " style="color:#676767"/> <p:commandLink value="contato@jsvinformaticaonline.com.br;" />
+				</li>
+				<li>
+					<h:outputText value="Ou se preferir ligue: " style="color:#676767"/><h:outputText value="2677 0000" style="color:#FF0000"/><h:outputText value=" de capitais e regiões metropolitanas ou " style="color:#676767"/><h:outputText value="0800 600 0000" style="color:#FF0000"/><h:outputText value=" para demais localidades." style="color:#676767"/>
+				</li>
+			</ul>
+			<h:outputText value="Nossa Central de Atendimento está disponível pelo telefone de segunda a sexta-feira das 08h00 às 20h00 e aos sábados das 08h00 às 14h00." style="color:#676767;margin:5px"/>
+		</ui:define>
+	</ui:composition>
+
+</html>

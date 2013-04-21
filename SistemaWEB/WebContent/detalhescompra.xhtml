@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">
+			
+			<h:panelGroup layout="block" style="margin:5px; font-size: 18px; font-weight:bold; color:#F90; text-align:center">
+				<h:outputText value="Pedido Finalizado com Sucesso!"/>
+				
+			</h:panelGroup>
+			<p:panel style="margin:5px">
+				<h:outputText value="Número: #{pedidoManager.pedido.id}" style="font-size:14px; font-weight:bold;color:#676767;margin:5px"/>
+			</p:panel>
+			<p:separator/>
+			
+			
+			<p:fieldset legend="Produtos" style="margin:5px">
+				<h:panelGroup layout="block" style="margin-left:20px; width:950px">
+				<p:dataTable emptyMessage="Nenhum produto adicionado ao carrinho" columnClasses="colunaCarrinho1,colunaCarrinho2,colunaCarrinho3,colunaCarrinho4,colunaCarrinho5" value="#{pedidoManager.pedido.itens}" var="produto" rowIndexVar="index">
+					<p:column styleClass="colunaCarrinho1">
+						<f:facet name="header">Imagem</f:facet>
+						<h:graphicImage library="produto" name="1.jpg"  style="margin:5px" width="50" height="50"/>
+					</p:column>
+					
+					<p:column styleClass="colunaCarrinho2">
+						<f:facet name="header">Produto</f:facet>
+						<h:outputText value="#{produto.produto.nome} - #{produto.produto.descricao}"/>
+					</p:column>
+					
+					<p:column styleClass="colunaCarrinho3">
+						<f:facet name="header">Imagem</f:facet>
+						<h:outputText value="#{produto.quantidade}"/>
+					</p:column>
+					
+					<p:column styleClass="colunaCarrinho4">
+						<f:facet name="header">Preço</f:facet>
+						<h:outputText value="#{produto.produto.valor}">
+							<f:convertNumber locale="pt" currencySymbol="R$ " type="currency"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column styleClass="colunaCarrinho5" >
+						<f:facet name="header">Total</f:facet>
+						<h:outputText value="#{produto.produto.valor * produto.quantidade}">
+							<f:convertNumber locale="pt" currencySymbol="R$ " type="currency"/>
+						</h:outputText>
+					</p:column>					
+				</p:dataTable>
+				</h:panelGroup>
+			</p:fieldset>
+			<p:separator/>
+			
+			<p:fieldset legend="Endereço de Entrega" style="margin:5px">
+				<h:panelGrid columns="2" columnClasses="padrao1" width="300">
+					<h:outputText value="Nome:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].nome}"/>
+					<h:outputText value="Logradouro:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].logradouro}"/>
+					<h:outputText value="Número:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].numero}"/>
+				</h:panelGrid>
+				<h:panelGrid columns="2" columnClasses="padrao1"  width="200">
+					<h:outputText value="Bairro:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].bairro}"/>
+					<h:outputText value="Cidade:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].cidade}"/>
+					<h:outputText value="UF:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].uf}"/>
+					
+					<h:outputText value="CEP:"/>
+					<h:outputText value="#{pedidoManager.pedido.endereco[0].cep}"/>
+				</h:panelGrid>
+			</p:fieldset>
+			
+			<p:separator/>
+			
+			<p:fieldset legend="Forma de Pagamento" style="margin:5px">
+				<h:outputText value="Boleto" rendered="#{pedidoManager.pedido.formaPagamento == 1}"/>
+				<h:outputText value="Cartão de Crédito" rendered="#{pedidoManager.pedido.formaPagamento == 2}"/>
+				<h:outputText value="Transferência Online" rendered="#{pedidoManager.pedido.formaPagamento == 3}"/>
+			</p:fieldset>
+		</ui:define>
+		</ui:composition>
+
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">			
+			<h:panelGroup layout="block" style="position:relative;margin:auto;width:400px">
+				<p:panel header="Autenticação de Usuário" >
+					<p:messages/>
+					<h:panelGrid columns="2">
+						<h:outputText value="E-mail: "/>
+						<p:inputText id="email" style="width:300px" value="#{usuarioManager.email}"/>
+						<h:outputText value="Senha: "/>
+						<p:password id="senha" value="#{usuarioManager.senha}"/>
+					</h:panelGrid>
+					<p:separator/>
+					
+					<h:panelGroup layout="block" style="text-align:center">
+						<p:commandButton value="Entrar" ajax="false" action="#{usuarioManager.logar}"/>
+					</h:panelGroup>
+				</p:panel>
+			</h:panelGroup>
+			
+			
+			
+			
+		</ui:define>
+	</ui:composition>
+
+</html>

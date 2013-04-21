@@ -1,0 +1,65 @@
+.ui-widget {
+	font-size: 12px;
+}
+
+.coluna1 {
+	vertical-align: top;
+	width: 200px;
+	
+}
+
+.coluna2 {
+	vertical-align: top;
+	
+}
+
+.coluna3 {
+	vertical-align: top;
+	width: 100px;
+}
+
+.coluna4 {
+	vertical-align: top;
+	width: 100px;
+}
+
+.coluna5 {
+	vertical-align: top;
+	width: 100px;
+}
+
+.coluna6 {
+	vertical-align: top;
+	
+}
+.coluna7 {
+	vertical-align: top;
+	
+}
+
+.padrao1 {
+	width:80px;
+}
+
+.colunaCarrinho1 {
+	width:60px;
+}
+
+.colunaCarrinho2 {
+	width:480px;
+}
+
+.colunaCarrinho3 {
+	width:100px;
+	text-align:center;
+}
+
+.colunaCarrinho4 {
+	width:100px;
+	text-align:center;
+}
+
+.colunaCarrinho5 {
+	width:100px;
+	text-align:center;
+}

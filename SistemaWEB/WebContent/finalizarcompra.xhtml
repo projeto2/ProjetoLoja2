@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">
+			<h:panelGroup layout="block" style="margin:5px; font-size: 18px; font-weight:bold; color:#F90; text-align:center">
+				<h:outputText value="Finalizar Compra"/>
+			</h:panelGroup>
+			
+			<p:separator/>
+			<p:messages />
+			<p:fieldset legend="Endereço de entrega" style="margin:5px">
+				<p:selectOneRadio layout="custom" id="escolha" required="true" requiredMessage="Selecione o endereço!" value="#{pedidoManager.endereco}" converter="enderecoConverter">
+					<f:selectItems value="#{usuarioManager.enderecos}" var="end" itemValue="#{end}"  />
+				</p:selectOneRadio>
+				
+				<p:scrollPanel style="height:220px" >
+						<p:dataGrid  value="#{usuarioManager.enderecos}" var="endereco" rowIndexVar="index">
+							<p:panel  style="width:300px;height:185px">
+								<f:facet name="header"><h:panelGrid columns="2"><p:radioButton for=":form1:escolha" itemIndex="#{index}" />#{index+1}º Endereço</h:panelGrid></f:facet>
+								<h:panelGrid columns="2" columnClasses="padrao1" width="300">
+									<h:outputText value="Nome:"/>
+									<h:outputText value="#{endereco.nome}"/>
+									<h:outputText value="Logradouro:"/>
+									<h:outputText value="#{endereco.logradouro}"/>
+									<h:outputText value="Número:"/>
+									<h:outputText value="#{endereco.numero}"/>
+								</h:panelGrid>
+								<h:panelGrid columns="2" columnClasses="padrao1"  width="200">
+									<h:outputText value="Bairro:"/>
+									<h:outputText value="#{endereco.bairro}"/>
+									<h:outputText value="Cidade:"/>
+									<h:outputText value="#{endereco.cidade}"/>
+									<h:outputText value="UF:"/>
+									<h:outputText value="#{endereco.uf}"/>
+									
+									<h:outputText value="CEP:"/>
+									<h:outputText value="#{endereco.cep}"/>
+								</h:panelGrid>
+							</p:panel>						
+						</p:dataGrid>
+				</p:scrollPanel>
+				<br/>
+				<h:panelGroup layout="block" style="text-align:center">
+					<p:commandLink value="Adicionar Endereço" onclick="addEnd.show()"/>
+				</h:panelGroup>
+			</p:fieldset>
+			
+			<p:separator/>
+			
+			<p:fieldset legend="Forma de pagamento" style="margin:5px">
+				<p:selectOneRadio value="#{pedidoManager.formaPagamento}" style="margin:5px" required="true" requiredMessage="Selecione a forma de pagamento!">
+					<f:selectItem itemLabel="Boleto" itemValue="1"/>
+					<f:selectItem itemLabel="Cartão de Crédito" itemValue="2"/>
+					<f:selectItem itemLabel="Transferência Online" itemValue="3"/>
+				</p:selectOneRadio>
+			</p:fieldset>
+			
+			<h:panelGroup layout="block" style="margin:5px; text-align:center">
+				<p:commandButton value="Finalizar Pedido" ajax="false" action="#{pedidoManager.salvarPedido}"/>
+			</h:panelGroup>
+		</ui:define>
+	</ui:composition>
+
+</html>

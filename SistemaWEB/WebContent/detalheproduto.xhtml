@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">
+			
+			<h:panelGroup layout="block" style="margin:5px; font-size: 18px; font-weight:bold; color:#F90; text-align:center">
+				<h:outputText value=" Detalhes do Produto"/>
+			</h:panelGroup>
+			
+			<p:separator/>
+			
+			<h:panelGrid columns="2">
+				<h:panelGroup layout="block" style="border: 1px solid #F90; margin:5px">
+					<h:graphicImage library="produto" name="1.jpg"  style="margin:5px"/>
+				</h:panelGroup>
+				
+				<h:panelGroup layout="block" style="margin:5px">
+					<h:outputText value="#{produtoManager.produto.nome}" style="font-size:18px; font-weight:bold"/><br/><br/>
+					<h:outputText value="Referência: #{produtoManager.produto.id}"/><br/><br/>
+					<h:outputText value="Descrição: #{produtoManager.produto.descricao}"/><br/><br/>
+					<h:outputText value="Preço: " />
+					<h:outputText value="#{produtoManager.produto.valor}">
+						<f:convertNumber locale="pt" currencySymbol="R$ " type="currency"/>
+					</h:outputText><br/><br/>
+					<h:outputText value="Quantidade: "/>
+					<p:inputText id="quantidade" style="width:30px" value="#{pedidoManager.quantidade}"/>
+				</h:panelGroup>
+			</h:panelGrid>
+			
+			<p:separator/>
+			
+			<h:panelGroup layout="block" style="margin:5px; text-align:center">
+				<p:commandButton value="Adicionar ao Carrinho" ajax="false" action="#{pedidoManager.adicionarCarrinho}">
+					<f:setPropertyActionListener target="#{pedidoManager.produto}" value="#{produtoManager.produto}"/>
+				</p:commandButton>
+				<p:commandButton value="Adicionar a Lista de Desejos" action="#{pedidoManager.adicionarListaDesejo}" ajax="false">
+					<f:setPropertyActionListener target="#{pedidoManager.produto}" value="#{produtoManager.produto}"/>
+				</p:commandButton>
+			</h:panelGroup>
+		</ui:define>
+	</ui:composition>
+
+</html>

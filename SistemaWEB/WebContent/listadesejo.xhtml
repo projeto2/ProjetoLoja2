@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:composition template="/template/template.xhtml">
+		<ui:define name="conteudo">
+			<h:panelGroup layout="block" style="margin:5px; font-size: 18px; font-weight:bold; color:#F90; text-align:center">
+				<h:outputText value="Lista de Desejos"/>
+			</h:panelGroup>
+			
+			<p:separator/>
+			<p:messages/>
+			<h:panelGroup layout="block" style="margin-left:20px; width:980px">
+				<p:dataTable emptyMessage="Nenhum produto adicionado a lista de desejos"  value="#{pedidoManager.listaDesejo}" var="produto" rowIndexVar="index">
+					<p:column styleClass="colunaCarrinho1">
+						<f:facet name="header">Imagem</f:facet>
+						<h:graphicImage library="produto" name="1.jpg"  style="margin:5px" width="50" height="50"/>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">Produto</f:facet>
+						<h:outputText value="#{produto.nome} - #{produto.descricao}"/>
+					</p:column>
+					
+					<p:column styleClass="colunaCarrinho4">
+						<f:facet name="header">Preço</f:facet>
+						<h:outputText value="#{produto.valor}">
+							<f:convertNumber locale="pt" currencySymbol="R$ " type="currency"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column styleClass="colunaCarrinho4" style="text-align:center">
+						<f:facet name="header">Excluir</f:facet>
+						<p:commandLink action="#{pedidoManager.excluirListaDesejo}"  oncomplete="excluirMsg.show()" update="@form">
+							<f:setPropertyActionListener target="#{pedidoManager.index}" value="#{index}" /> 
+							<h:graphicImage library="imagem" name="excluir.jpg"  style="margin:5px;border:0px" width="20" height="20"/>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</h:panelGroup>
+			
+		</ui:define>
+	</ui:composition>
+
+</html>

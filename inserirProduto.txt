@@ -1,0 +1,11 @@
+http://localhost:8080/SistemaWEB
+
+mysql server
+
+senha: root
+
+use sistema;
+
+describe produto;
+
+INSERT INTO produto(categoria,descricao,nome,valor) VALUES("SOFTWARE", "Produto 1", "Nome do produto", 1.0);
